@@ -1,0 +1,22 @@
+.container>div {
+    text-align: center;
+    /* Centra el contenido de texto e imágenes */
+}
+
+
+
+h1 {
+    text-align: center;
+}
+
+.contenido {
+    width: 200px;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+p {
+    padding: 5px;
+}
