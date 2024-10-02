@@ -32,6 +32,13 @@ export class JuguetesComponent {
         edad: 3000,
         imagen: "https://artwhale.ph/wp-content/uploads/2019/10/MTN-Hardcore-Fat-Cap.jpg",
         alt: "Fat Cap "
+      },
+      {
+        id: "",
+        nombre: "Cuaderno",
+        edad: 3000,
+        imagen: "https://ih1.redbubble.net/image.1214313966.8725/sn,x600-pad,600x600,f8f8f8.jpg",
+        alt: "Fat Cap "
       }
     ]
   }

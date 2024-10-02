@@ -31,6 +31,13 @@ constructor(){
       edad: 8000,
       imagen: "https://arteacr.com/wp-content/uploads/2020/06/27848-Marcador-Posca-plateado-PC-8K-PX113613000-600x600.jpg",
       alt: "Aerosol Hardcore"
+    },
+    {
+      id: "",
+      nombre: "Posca Naranja",
+      edad: 8000,
+      imagen: "https://http2.mlstatic.com/D_NQ_NP_928110-MLA49437144583_032022-O.webp",
+      alt: "Aerosol Hardcore"
     }
   ]
 }
