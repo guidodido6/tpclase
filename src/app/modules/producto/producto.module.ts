@@ -8,13 +8,15 @@ import { ProductoRoutingModule } from './producto-routing.module';
 // VISTAS
 import { ProductoComponent } from './pages/producto/producto.component';
 import { IndumentariaComponent } from './pages/indumentaria/indumentaria.component';
-import { AlimentacionComponent } from './pages/alimentacion/alimentacion.component';
+
 import { JuguetesComponent } from './pages/juguetes/juguetes.component';
 
+import {MatCardModule} from '@angular/material/card';
 // COMPONENTES LOCALES
 import { CardComponent } from './components/card/card.component';
 import { CardJuguetesComponent } from './components/card-juguetes/card-juguetes.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
+import { AlimentacionComponent } from './pages/alimentacion/alimentacion.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
   imports: [
     CommonModule,
     ProductoRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+ 
   ],
   exports: [
     ProductoComponent,
@@ -38,7 +42,10 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
     JuguetesComponent,
     CardComponent,
     CardJuguetesComponent,
-    MatTabsModule
+    CarruselComponent,
+    MatTabsModule,
+    MatCardModule
+  
   ]
 })
 export class ProductoModule { }
