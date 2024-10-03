@@ -24,7 +24,7 @@
         color: white;
     }
    mat-toolbar{
-    background-color: rgb(28, 218, 28)
+    background-color: rgb(28, 218, 28);
    }
 }
 
@@ -32,4 +32,5 @@
         display: none;
         
     }
+
 

@@ -1,0 +1,30 @@
+/*#################################### ESTILOS CARRUSEL INFINITO ####################################*/
+
+.mi-carrusel {
+    overflow: hidden;
+    width: 100%;
+}
+
+.mi-carrusel img {
+    width: 10%; /* Ajusta este valor según el tamaño deseado */
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: grayscale(100%);
+}
+
+.mi-carrusel img:hover {
+    filter: grayscale(0%);
+}
+
+@keyframes mi-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.mi-carrusel-inner {
+    display: flex;
+    animation: mi-slide 20s linear infinite;
+}
+
+.mi-carrusel-inner img {
+    min-width: 10%; /* Ajusta este valor según el tamaño deseado */
+}
