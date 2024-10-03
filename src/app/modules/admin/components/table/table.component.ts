@@ -97,6 +97,7 @@ export class TableComponent {
 
   // Función para eliminar definitivamente al producto
   borrarProducto() {
+    //eniva id del productoeliminado y la ubicacion en el almacenamiento de STORAGE
     this.servicioCrud.eliminarProducto(this.productoSeleccionado.idProducto, this.productoSeleccionado.imagen)
       .then(respuesta => {
         alert("El producto se ha eliminado correctamente.")
@@ -134,14 +135,77 @@ export class TableComponent {
       alt: this.producto.value.alt!
     }
 
-    this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
-      .then(producto => {
-        alert("El producto fue modificado con éxito.");
+    if(this.imagen){
+      this.servicioCrud.subirImagen(this.nombreImagen, this.imagen, "productos")
+      .then(resp => {
+        this.servicioCrud.obtenerUrlImagen(resp)
+        .then(url => {
+          //actualizamos la url de la mig en los datos del fomrulario
+          datos.imagen=url;
+
+          //actualizamso url de la imagen en los datos del formulario
+          this.actualizarProducto(datos);
+
+          //vaciamos casillas del formulario
+          this.producto.reset();
+
+        })
+        .catch(error=>{
+          alert("hubo un problema al subir la imagen :( \n" +error)
+
+          this.producto.reset();
+        })
       })
-      .catch(error => {
-        alert("Hubo un problema al modificar el producto.");
-      })
+    }else{
+        /**
+         * 
+         * 
+         * 
+        */
+       this.actualizarProducto(datos);
+    }
   }
 
-  actualizarProducto(){}
+    //actualiza la info ya existente de los productos
+  actualizarProducto(datos : Producto) {
+    this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
+    .then(producto => {
+      alert("El producto fue modificado con éxito.");
+    })
+    .catch(error => {
+      alert("Hubo un problema al modificar el producto.");
+    })
+   }
+
+  //metodo para cargar imagenes
+  cargarImagen(event: any) {
+    //VAriable para obtener el archivo subido desde el input del html
+    let archivo = event.target.files[0];
+
+    //variable para crear un nuevo objeto de tipo archivo o file y poder leerlo
+    let reader = new FileReader();
+
+    if (archivo != undefined) {
+      /*
+    llamamos a metodo ReadAsDataurl para leer toda la info recibida.
+    Enviamos como parametro el archivo porqwue sera el encargadp de tener la info
+    ingresada por el usuario    
+    */
+      reader.readAsDataURL(archivo);
+
+      // Definimos que  haremos con la info mediante la funcion ficha
+      reader.onloadend = () => {
+        let url = reader.result;
+
+        if (url != null) {
+          //definimos nombre de la img con atributo y diferente a nula
+          this.nombreImagen = archivo.name;
+
+          //definimos ruta de la img segun url recibid en formato de cadena (string)
+          this.imagen = url.toString();
+        }
+      }
+
+    }
+  }
 }
