@@ -17,7 +17,7 @@ export class AlimentacionComponent {
         id: "",
         nombre: "Aerosol Violeta",
         edad: 10000,
-        imagen: "https://dcdn.mitiendanube.com/stores/666/345/products/hard21-8d36defa1060f3328116694821287656-640-0.jpg",
+        imagen: 'https://dcdn.mitiendanube.com/stores/666/345/products/hard21-8d36defa1060f3328116694821287656-640-0.jpg',
         alt: "Posca Mop'r Rosado"
       },
       {

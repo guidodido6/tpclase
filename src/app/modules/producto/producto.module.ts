@@ -17,6 +17,7 @@ import { CardComponent } from './components/card/card.component';
 import { CardJuguetesComponent } from './components/card-juguetes/card-juguetes.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { AlimentacionComponent } from './pages/alimentacion/alimentacion.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AlimentacionComponent } from './pages/alimentacion/alimentacion.compone
     ProductoRoutingModule,
     MatTabsModule,
     MatCardModule,
+    MatButtonModule
  
   ],
   exports: [
@@ -44,7 +46,8 @@ import { AlimentacionComponent } from './pages/alimentacion/alimentacion.compone
     CardJuguetesComponent,
     CarruselComponent,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   
   ]
 })
