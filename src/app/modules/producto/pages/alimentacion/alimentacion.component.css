@@ -1,13 +1,7 @@
-h1 {
-    text-align: center;
-}
-
-.container>div {
-    width: 200px;
-    display: inline-block;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 10px;
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias filas */
+    justify-content: space-between; /* Espacia los elementos */
 }
 
 p {
@@ -40,29 +34,26 @@ p {
 }
 /* From Uiverse.io by MuhammadHasann */ 
 .card {
-    
-        --bg-card: #51d928;
-        --primary: #ff00ff;
-        --primary-800: #ffffff;
-        --primary-shadow: #51d928;
-        --light: #d9d9d9;
-        --zinc-800: #18181b;
-        --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
-      
-        position: relative;
-      
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      
-        padding: 1rem;
-        width: 100%; /* Cambia a 100% para que ocupe todo el ancho del card-wrapper */
-        background-color: var(--bg-card);
-      
-        border-radius: 1rem;
-  }
+    --bg-card: #51d928;
+    --primary: #ff00ff;
+    --primary-800: #ffffff;
+    --primary-shadow: #51d928;
+    --light: #d9d9d9;
+    --zinc-800: #18181b;
+    --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
   
-  .image_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  
+    padding: 1rem;
+    width: 100%; /* Asegúrate de que ocupe todo el ancho del card-wrapper */
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+}
+  
+.image_container {
     overflow: hidden;
     cursor: pointer;
     position: relative;
@@ -175,3 +166,14 @@ p {
   .cart-button .cart-icon {
     width: 1rem;
   }
+
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0 0 0/ .8), rgba(0 0 0 / .8)), url(../../../../../assets/geometric-backdrop-graffiti-drawing-style-wallpaper-abstract-futuristic-bright-background-vector.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+}

@@ -156,5 +156,16 @@ p {
   .cart-button .cart-icon {
     width: 1rem;
   }
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0 0 0/ .8), rgba(0 0 0 / .8)), url(../../../../../assets/geometric-backdrop-graffiti-drawing-style-wallpaper-abstract-futuristic-bright-background-vector.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+}
+
   
 
