@@ -1,7 +1,7 @@
 export interface marcadores {
     id: string;
     nombre: string;
-    edad: number;
+    precio: number;
     imagen: string;
     alt: string;
 }

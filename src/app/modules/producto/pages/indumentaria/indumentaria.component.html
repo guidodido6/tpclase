@@ -1,26 +1,37 @@
 <marquee behavior="" direction=""><div><img src="../../../../../assets/desc.png" alt="" height="65px"></div></marquee>
 <div class="container">
-    <div class="row">
-       <div><div><img src="../../../../../assets/marcadores.png" alt="" height="65px"></div></div>
-
-        <div class="col">
-            <div *ngFor="let i of info" class="contenido">
-                <mat-card class="example-card">
-                    <mat-card-header>
-                      <mat-card-title>{{i.nombre}}</mat-card-title>
-                    </mat-card-header>
-                    <img mat-card-image src="{{i.imagen}}" alt="{{i.alt}}">
-                    <mat-card-content>
-                      <p>
-                        {{i.edad}}
-                      </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>LIKE</button>
-                      <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                  </mat-card>                
-            </div>
-        </div>
+  <div class="row">
+    <div>
+    <div><img src="../../../../../assets/marcadores.png" alt="" height="65px"></div>
     </div>
+
+    <div class="col">
+      <div class="contenido">
+        <div *ngFor="let i of info" class="card-wrapper">
+          <div class="card">
+            <div class="image_container">
+              <img class="image" src="{{i.imagen}}" alt="{{i.alt}}">
+            </div>
+            <div class="title">
+              <span>{{i.nombre}}</span>
+            </div>
+            <div class="size">
+              <span>Tamaño</span>
+            </div>
+            <div class="action">
+              <div class="price">
+                <span>{{i.precio}}</span>
+              </div>
+              <button class="cart-button">
+                <svg class="cart-icon" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+                <span>Agregar al carrito</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

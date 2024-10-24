@@ -4,4 +4,5 @@ export interface Animal {
     edad: number;
     imagen: string;
     alt: string;
+
 }

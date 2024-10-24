@@ -2,3 +2,13 @@
     justify-content: center;
     display: flex;
 }
+@media (min-width: 300px) and (max-width: 700px) {
+        /* Estilos para cards en dispositivos pequeños */
+        .card {
+            width: 90%; /* Ajusta el ancho del card */
+            margin: 10px auto; /* Centra el card y añade espacio */
+            padding: 10px; /* Espacio interno del card */
+            font-size: 14px; /* Tamaño de la fuente dentro del card */
+        }
+
+}

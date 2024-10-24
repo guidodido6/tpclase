@@ -1,54 +1,67 @@
 import { Injectable } from '@angular/core';
-// Servicio de AUTENTIFICACIÓN de FIREBASE
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // Referenciar Auth de Firebase para inicializarlo
-  constructor(
-    private auth: AngularFireAuth,
-    private servicioFirestore: AngularFirestore
-  ) { }
+  private rolusuario:string | null = null;
 
-  // Función para REGISTRO
-  registrar(email: string, password: string){
-    // Retorna nueva información de EMAIL y CONTRASEÑA
-    return this.auth.createUserWithEmailAndPassword(email, password);
+  constructor(private auth: AngularFireAuth, private serviceFirestore: AngularFirestore) { }
+  //funcion para el registro
+  registrar(email:string, password:string){
+    //retorna el valor que es creado con elmetodo "create email"
+    return this.auth.createUserWithEmailAndPassword(email, password)
   }
-
-  // Función para INICIO DE SESIÓN
-  iniciarSesion(email: string, password: string){
-    // Validar el email y la contraseña
-    return this.auth.signInWithEmailAndPassword(email, password);
+  //funcion de inicio de sesion
+  iniciosesion(email:string, password:string){
+    //valida la informacion del usuario y si existe en la coleccion
+    return this.auth.signInWithEmailAndPassword(email, password)
   }
-
-  // Función para CERRAR SESIÓN
-  cerrarSesion(){
-    // Devolver una promesa vacía
+  //funcion para cerrar sesion
+  cerrarsesion(){
+    //devuelve una promesa vacia - quita token
     return this.auth.signOut();
   }
 
-  // Función para tomar UID
+  //funcion para tomar el uid
   async obtenerUid(){
-    // Nos va a generar una promesa, y la constante la va a capturar
-    const user = await this.auth.currentUser;
+    //nos va a generar una promesea, y la constante la va a capturar
+    const user=await this.auth.currentUser;
 
-    /*
-      Si el usuario no respeta la estructura de la interfaz /
-      Si tuvo problemas para el registro -> ej.: mal internet
-    */
+    //si el usuario no respeta la estructura de la interfaz 
+    //o si tuvo problemas para el registro -> ejemplo: mal internet
     if(user == null){
       return null;
-    } else {
+    }else{
       return user.uid;
     }
   }
 
-  // Función que busca un usuario en la colección de 'usuarios' cuyo correo electrónico coincida con el valor proporcionado
-  obtenerUsuario(email: string){
-    return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise();
+  obtenerUsuario(email:string){
+
+    /*
+    RETORNAMOS DEL SERVICIO FIRESTORE LA COLECCION USUARIOS, BUSCAMOS UNA REFERENCIA EN LOS EMAILS REGISTRADOS
+    Y LOS COMPARAMOS CON LOS QUE INGRESE EL USUARIO AL INICIAR SESION, Y LO OBTIENE CON EL .GET(), LO VUELVE UNA PROMESA
+    => DA RESULTADO RESUELTO O RECHAZADO */
+    return this.serviceFirestore.collection('usuarios', ref => ref.where('email.','==', email)).get().toPromise();
+  }
+
+  obtenerRol(uid:string): Observable <string | null>{
+    return this.serviceFirestore.collection('usuarios').doc(uid).valueChanges()
+    .pipe(map((usuario:any) => usuario ? usuario.rol : null));
+  }
+
+  enviarRolUsuario(rol: string){
+    this.rolusuario = rol;
+  }
+
+  obtenerRolUsuario(): string | null {
+    return this.rolusuario
   }
 }

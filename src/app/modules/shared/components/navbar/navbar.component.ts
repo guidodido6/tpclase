@@ -22,11 +22,11 @@ export class NavbarComponent {
     this.deslogueado = true;
   }
 
-  cerrarSesion(){
+  cerrarsesion(){
     this.deslogueado = false;
     // va a eliminar el "token" actual del usuario
     // token: estado actual del usuario en el navegador para mantener la sesión abierta
-    this.servicioAuth.cerrarSesion();
+    this.servicioAuth.cerrarsesion();
 
     this.servicioRutas.navigate(['/']); // redigirimos a la raíz de la página
     this.logueado = true;

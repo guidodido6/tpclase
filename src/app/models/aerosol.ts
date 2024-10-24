@@ -1,7 +1,7 @@
 export interface Aerosol {
     id: string;
     nombre: string;
-    edad: number;
+    precio: number;
     imagen: string;
     alt: string;
 }

@@ -26,7 +26,7 @@
     <mat-menu #usuario="matMenu">
         <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/registro">Registrarse</button>
         <button mat-menu-item (click)="iniciar()" *ngIf="logueado" routerLink="/inicio-sesion">Iniciar sesión</button>
-        <button mat-menu-item (click)="cerrarSesion()" *ngIf="deslogueado">Cerrar Sesión</button>
+        <button mat-menu-item (click)="cerrarsesion()" *ngIf="deslogueado">Cerrar Sesión</button>
     </mat-menu>
 
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
