@@ -1,11 +1,18 @@
-.container{
+.container {
     display: flex;
     padding: 10px;
     text-align: center;
     justify-content: center;
+
+    background: linear-gradient(rgba(0 0 0/ .8), rgba(0 0 0 / .8)), url(../../../../../assets/geometric-backdrop-graffiti-drawing-style-wallpaper-abstract-futuristic-bright-background-vector.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+
 }
 
-.boton{
+.boton {
     width: 120px;
     margin: auto;
 }

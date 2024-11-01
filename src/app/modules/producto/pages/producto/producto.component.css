@@ -12,8 +12,7 @@ h1{
     filter: invert(48%) sepia(69%) saturate(511%) hue-rotate(86deg) brightness(93%) contrast(99%);
 }
 body{
-    display: flex;
-    justify-content: center;
+
     align-items: center;
     background: linear-gradient(rgba(0 0 0/ .8), rgba(0 0 0 / .8)), url(../../../../../assets/geometric-backdrop-graffiti-drawing-style-wallpaper-abstract-futuristic-bright-background-vector.jpg);
     background-size: cover;
