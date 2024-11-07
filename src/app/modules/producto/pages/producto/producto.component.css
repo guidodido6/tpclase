@@ -11,12 +11,3 @@ h1{
 .carousel-control-prev-icon, .carousel-control-next-icon {
     filter: invert(48%) sepia(69%) saturate(511%) hue-rotate(86deg) brightness(93%) contrast(99%);
 }
-body{
-
-    align-items: center;
-    background: linear-gradient(rgba(0 0 0/ .8), rgba(0 0 0 / .8)), url(../../../../../assets/geometric-backdrop-graffiti-drawing-style-wallpaper-abstract-futuristic-bright-background-vector.jpg);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-}

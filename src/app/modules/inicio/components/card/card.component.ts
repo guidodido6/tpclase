@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 // IMPORTAMOS INTERFAZ
-import { Animal } from 'src/app/models/animal';
+import { animal } from 'src/app/models/animal';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,7 @@ import { Animal } from 'src/app/models/animal';
 })
 export class CardComponent {
   // PROPIEDAD PÚBLICA (TIPO ARRAY)
-  public info: Animal[];
+  public info: animal[];
 
   constructor(){
     this.info = [

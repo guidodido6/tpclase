@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // ARCHIVO DE RUTAS
 import { ProductoRoutingModule } from './producto-routing.module';
 
@@ -34,7 +36,9 @@ import { MatButtonModule } from '@angular/material/button';
     ProductoRoutingModule,
     MatTabsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule, 
+    ReactiveFormsModule
  
   ],
   exports: [
