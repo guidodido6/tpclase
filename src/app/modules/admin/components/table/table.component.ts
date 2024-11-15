@@ -61,7 +61,7 @@ export class TableComponent {
         // imagen ahora toma la URL generada desde Storage
         imagen: '',
         alt: this.producto.value.alt!,
-        stock
+        stock: this.producto.value.stock!,
       }
 
       // Enviamos nombre y url de la imagen; definimos carpeta de imágenes como "productos"

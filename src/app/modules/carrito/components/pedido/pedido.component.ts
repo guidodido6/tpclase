@@ -34,6 +34,7 @@ export class PedidoComponent {
       }
     })
   }
-
-
+  quitarPedido(pedido:Pedido){
+    this.servicioCarrito.borrarPedido(pedido);
+  }
 }

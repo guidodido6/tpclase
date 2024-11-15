@@ -25,9 +25,11 @@ const routes: Routes = [
   {
     path:"",loadChildren:()=>import('./modules/admin/admin.module').then(m=>m.AdminModule),
 
-    canActivate:[rutaProtegidaGuard], data: {role:'admin'}
-  }  
-
+    //canActivate:[rutaProtegidaGuard], data: {role:'admin'} (solo con usuarios registrados, por ahora no me funciona)
+  },
+  {
+    path:"",loadChildren:()=>import('./modules/carrito/carrito.module').then(m=>m.CarritoModule)
+  },
 ];
 
 @NgModule({

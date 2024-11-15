@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore.serv
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import Swal from 'sweetalert2';
+import { CarritoService } from 'src/app/modules/carrito/services/carrito.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -17,7 +18,8 @@ export class InicioSesionComponent {
   constructor(
     public servicioAuth: AuthService,
     public servicioFirestore: FirestoreService,
-    public servicioRutas: Router
+    public servicioRutas: Router,
+    public servicioCarrito: CarritoService
   ) { }
 
   // Importamos la interfaz de usuario e inicializamos vacío
@@ -32,8 +34,7 @@ export class InicioSesionComponent {
 
   // Función para el inicio de sesión
   async iniciarSesion() {
-
-
+    // Las credenciales reciben la información que se envía desde la web
     const credenciales = {
       email: this.usuarioIngresado.email,
       password: this.usuarioIngresado.password
@@ -53,7 +54,7 @@ export class InicioSesionComponent {
         this.limpiarInputs();
         return;
       }
-      
+
       /* Primer documento (registro) en la colección de usuarios que se obtiene desde la 
         consulta.
       */
@@ -85,9 +86,21 @@ export class InicioSesionComponent {
           icon: "success"
         });
 
-        this.servicioAuth.enviarRolUsuario(this.usuarioIngresado.rol);
+        // Almacena el rol del usuario en el servicio de autentificación
+        this.servicioAuth.enviarRolUsuario(usuarioData.rol);
 
-        this.servicioRutas.navigate(['/inicio']);
+        if(usuarioData.rol === "admin"){
+          console.log("Inicio de sesión de usuario administrador")
+
+          // Si es administrador, redirecciona a la vista de 'admin'
+          this.servicioRutas.navigate(['/admin']);
+        } else {
+          console.log("Inicio de sesión de usuario visitante");
+
+          // Si es visitante, redirecciona a la vista de 'inicio'
+          this.servicioRutas.navigate(['/inicio']);
+          this.servicioCarrito.iniciarCart();
+        }
       })
       .catch(err => {
         Swal.fire({
