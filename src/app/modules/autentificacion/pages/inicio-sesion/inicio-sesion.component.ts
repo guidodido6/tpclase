@@ -52,10 +52,10 @@ export class InicioSesionComponent {
           icon: "error"
         })
         this.limpiarInputs(); // Limpia los campos del formulario
-        return;
+        return; // Sale de la función, no continua con el resto del código
       }
 
-      // Obtiene el primer documento encontrado en la colección de usuarios
+      // Obtiene el primer documento encontrado en la colección de usuarios (suponiendo que el email es único)
       const usuarioDoc = usuarioBD.docs[0];
 
       // Extrae los datos del documento y los convierte a un objeto de tipo Usuario
@@ -85,15 +85,18 @@ export class InicioSesionComponent {
         // Almacena el rol del usuario en el servicio de autenticación
         this.servicioAuth.enviarRolUsuario(usuarioData.rol);
 
-        // Redirige al usuario según su rol
-        if (usuarioData.rol === "admin") {
-          console.log("Inicio de sesión de usuario administrador")
-          this.servicioRutas.navigate(['/admin']); // Redirige a la vista de administrador
-        } else {
-          console.log("Inicio de sesión de usuario visitante");
-          this.servicioRutas.navigate(['/inicio']); // Redirige a la vista de inicio
-          this.servicioCarrito.iniciarCart(); // Inicializa el carrito de compras
-        }
+      // Redirige al usuario según su rol
+      if (usuarioData.rol === "admin") {
+        console.log("Inicio de sesión de usuario administrador");
+        // Si el usuario es administrador, redirige a la página de administración
+        this.servicioRutas.navigate(['/admin']);
+      } else {
+        console.log("Inicio de sesión de usuario visitante");
+        // Si el usuario es un visitante, redirige a la página de inicio
+        this.servicioRutas.navigate(['/inicio']);
+        // Inicializa el carrito de compras para el usuario visitante
+        this.servicioCarrito.iniciarCart();  // Asumiendo que 'servicioCarrito' tiene el método 'iniciarCart'
+      }
       })
       .catch(err => {
         Swal.fire({

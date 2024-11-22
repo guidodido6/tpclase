@@ -54,14 +54,15 @@ export class CrudService {
     })
   }
 
-  // OBTENER productos
-  obtenerProducto(){
-    // snapshotChanges -> toma una captura del estado de los datos
-    // pipe -> funciona como una tubería que retorna el nuevo arreglo de datos
-    // map -> "mapea" o recorre esa nueva información
-    // a -> resguarda la nueva información y la envía
-    return this.productosCollection.snapshotChanges().pipe(map(action => action.map(a => a.payload.doc.data())));
-  }
+// OBTENER productos
+obtenerProducto(){
+  // Devuelve un Observable que emite una lista de productos
+  return this.productosCollection.snapshotChanges()  // Llama a snapshotChanges() para obtener los cambios en la colección
+    .pipe(  // Usamos el operador 'pipe' para aplicar transformaciones en el flujo de datos del Observable
+      map(action => action.map(a => a.payload.doc.data()))  // Aplica la función map para transformar los datos de la respuesta
+    );
+}
+
 
   // EDITAR productos
   modificarProducto(idProducto: string, nuevaData: Producto){
