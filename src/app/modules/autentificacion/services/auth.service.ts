@@ -52,16 +52,19 @@ export class AuthService {
     return this.serviceFirestore.collection('usuarios', ref => ref.where('email.','==', email)).get().toPromise();
   }
 
-  obtenerRol(uid:string): Observable <string | null>{
-    return this.serviceFirestore.collection('usuarios').doc(uid).valueChanges()
-    .pipe(map((usuario:any) => usuario ? usuario.rol : null));
-  }
+// Método para obtener el rol de un usuario por su UID desde Firestore
+obtenerRol(uid: string): Observable<string | null> {
+  return this.serviceFirestore.collection('usuarios').doc(uid).valueChanges()
+    .pipe(map((usuario: any) => usuario ? usuario.rol : null));
+}
 
-  enviarRolUsuario(rol: string){
-    this.rolusuario = rol;
-  }
+// Método para enviar (almacenar) el rol de usuario
+enviarRolUsuario(rol: string) {
+  this.rolusuario = rol;
+}
 
-  obtenerRolUsuario(): string | null {
-    return this.rolusuario
-  }
+// Método para obtener el rol de usuario almacenado
+obtenerRolUsuario(): string | null {
+  return this.rolusuario;
+}
 }

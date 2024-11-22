@@ -1,3 +1,4 @@
+// Importaciones necesarias
 import { Injectable } from '@angular/core';
 import { CrudService } from '../../admin/services/crud.service';
 import { AuthService } from '../../autentificacion/services/auth.service';
@@ -8,97 +9,104 @@ import { map } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Proporciona el servicio en la raíz del módulo
 })
 export class CarritoService {
 
-  pedido:Pedido = {
-    idPedido:'',
-    producto:{
-      idProducto:'',
-      nombre:'',
-      precio:0,
-      descripcion:'',
-      categoria:'',
-      imagen:'',
-      alt:'',
-      stock:0
+  // Definición del objeto Pedido con propiedades inicializadas
+  pedido: Pedido = {
+    idPedido: '',
+    producto: {
+      idProducto: '',
+      nombre: '',
+      precio: 0,
+      descripcion: '',
+      categoria: '',
+      imagen: '',
+      alt: '',
+      stock: 0
     },
-    cantidad:0,
-    total:0
+    cantidad: 0,
+    total: 0
   }
 
+  // Colección de pedidos en Firestore
   private pedidosColeccion: AngularFirestoreCollection<Pedido>
 
+  // UID del usuario
   private uid: string | null = null;
 
+  // Constructor para inyectar dependencias necesarias
   constructor(
-    private servicioAuth:AuthService,
-    private servicioFirestore:AngularFirestore,
-    public servicioRutas: Router
+    private servicioAuth: AuthService, // Servicio de autenticación
+    private servicioFirestore: AngularFirestore, // Servicio de Firestore
+    public servicioRutas: Router // Servicio de enrutamiento
   ) {
-    //Creamos un subcoleccion dentro de la coleccion de usuarios y le damos ese valor a pedidosColeccion
+    // Inicialización de la subcolección de pedidos dentro de la colección de usuarios
     this.pedidosColeccion = this.servicioFirestore.collection(`usuarios/${this.uid}/pedido`);
   }
 
-  //Funcion para inicializar el carrito
-  iniciarCart(){
-    
+  // Función para inicializar el carrito
+  iniciarCart() {
     this.servicioAuth.obtenerUid().then(uid => {
-      //Obtenemos el ID del usuario para la subcoleccion
-      
-      this.uid = uid
-      //Diferenciacion en base al id del usuario
-      if(this.uid === null){
-        console.error('No se obtuvo el UID. Intente iniciar sesion');
-        
-        this.servicioRutas.navigate(['/inicio-sesion']);
-      }else{
+      // Obtener el UID del usuario
+      this.uid = uid;
+      if (this.uid === null) {
+        console.error('No se obtuvo el UID. Intente iniciar sesión');
+        this.servicioRutas.navigate(['/inicio-sesion']); // Redirige a la página de inicio de sesión
+      } else {
+        // Inicializa la subcolección de pedidos con el UID del usuario
         this.pedidosColeccion = this.servicioFirestore.collection(`usuarios/${this.uid}/pedido`);
-        console.log(this.uid)
+        console.log(this.uid);
       }
     });
   }
 
-  obtenerCarrito(){
-    return this.pedidosColeccion.snapshotChanges().pipe(map(action => action.map(a => a.payload.doc.data())));
+  // Función para obtener el carrito de compras
+  obtenerCarrito() {
+    return this.pedidosColeccion.snapshotChanges().pipe(
+      map(action => action.map(a => a.payload.doc.data() as Pedido))
+    );
   }
 
-  crearPedido(producto:Producto, stock:number){
+  // Función para crear un nuevo pedido
+  crearPedido(producto: Producto, stock: number) {
     try {
-      //Creamos un ID para el pedido que sera subido
+      // Crear un ID único para el pedido
       const idPedido = this.servicioFirestore.createId();
 
-      //Reemplazamos los valores de pedido por los valores que obtuvimos
+      // Asignar valores al objeto pedido
       this.pedido.idPedido = idPedido;
       this.pedido.producto = producto;
       this.pedido.cantidad = stock;
-      this.pedido.total = producto.precio*stock;
+      this.pedido.total = producto.precio * stock;
 
+      // Guardar el pedido en Firestore
       this.pedidosColeccion.doc(idPedido).set(this.pedido);
     } catch (error) {
       Swal.fire({
-        title:'¡Oh no!',
-        text:'Ha ocurrido un error al subir su producto',
-        icon:'error'
-      })
+        title: '¡Oh no!',
+        text: 'Ha ocurrido un error al subir su producto',
+        icon: 'error'
+      });
     }
   }
-  borrarPedido(pedido:Pedido){
+
+  // Función para borrar un pedido
+  borrarPedido(pedido: Pedido) {
     try {
+      // Eliminar el pedido de Firestore
       this.pedidosColeccion.doc(pedido.idPedido).delete();
       Swal.fire({
-        text:'Ha borrado su pedido con exito',
-        icon:'info'
-      })
-      
+        text: 'Ha borrado su pedido con éxito',
+        icon: 'info'
+      });
     } catch (error) {
       Swal.fire({
-        text:'Ha ocurrido un error: n/'+error,
-        icon:'error'
-      })
+        text: 'Ha ocurrido un error: \n' + error,
+        icon: 'error'
+      });
     }
   }
 }

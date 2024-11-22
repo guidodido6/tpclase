@@ -1,3 +1,6 @@
+
+
+
 /* Declaramos con palabra reservada MEDIA -> DISPOSITIVOS PEQUEÑOS (ej.: celular) */
 @media (min-width: 300px) and (max-width: 700px) {
     mat-toolbar {

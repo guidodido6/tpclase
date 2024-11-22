@@ -1,17 +1,20 @@
+// Importación de la clase Component de Angular
 import { Component } from '@angular/core';
-// IMPORTAMOS INTERFAZ
+// Importación de la interfaz animal desde la ruta especificada
 import { animal } from 'src/app/models/animal';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-card', // Selector del componente
+  templateUrl: './card.component.html', // Ruta al archivo de plantilla HTML del componente
+  styleUrls: ['./card.component.css'] // Ruta al archivo de estilos CSS del componente
 })
 export class CardComponent {
-  // PROPIEDAD PÚBLICA (TIPO ARRAY)
+  // Propiedad pública de tipo array que contendrá información de animales
   public info: animal[];
 
-  constructor(){
+  // Constructor del componente
+  constructor() {
+    // Inicialización del array info con datos predefinidos
     this.info = [
       {
         id: "",
@@ -34,6 +37,6 @@ export class CardComponent {
         imagen: "https://www.dmentalgraffitishop.com/wp-content/uploads/2021/10/MORADO-HARDCORE-400-ML-600x600.jpg",
         alt: "Aerosol Hardcore"
       }
-    ]
+    ];
   }
 }

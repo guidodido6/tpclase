@@ -69,32 +69,32 @@ export class CrudService {
     return this.database.collection('producto').doc(idProducto).update(nuevaData);
   }
 
-  // ELIMINAR productos
-  eliminarProducto(idProducto: string, imagenUrl: string){
-    return new Promise((resolve, reject) => {
-      try{
-        // Definimos referencia local de Storage en el bloque "try"
-        const storage = getStorage();
+// ELIMINAR productos
+eliminarProducto(idProducto: string, imagenUrl: string) {
+  return new Promise((resolve, reject) => {  // Se crea una promesa para manejar de forma asíncrona el proceso
+    try {
+      // Definimos referencia local de Storage en el bloque "try"
+      const storage = getStorage();  // Obtenemos la instancia de Firebase Storage para interactuar con los archivos almacenados
 
-        // Definimos referencia local desde el almacenamiento de Storage
-        const referenciaImagen = ref(storage, imagenUrl);
+      // Definimos referencia local desde el almacenamiento de Storage
+      const referenciaImagen = ref(storage, imagenUrl);  // Creamos una referencia a la imagen usando su URL dentro de Firebase Storage
 
-        // Eliminamos la imagen desde el almacenamiento
-        deleteObject(referenciaImagen)
-        .then((res) => {
+      // Eliminamos la imagen desde el almacenamiento
+      deleteObject(referenciaImagen)  // Llamamos a la función `deleteObject` de Firebase para eliminar el archivo referenciado
+        .then((res) => {  // Si la eliminación de la imagen es exitosa
           // Accedo a la colección, busco su ID y lo elimino
-          const respuesta = this.productosCollection.doc(idProducto).delete();
-          resolve(respuesta);
+          const respuesta = this.productosCollection.doc(idProducto).delete();  // Eliminamos el producto de la base de datos (Firestore)
+          resolve(respuesta);  // Resolvemos la promesa con la respuesta de la eliminación del producto
         })
-        .catch(error => {
-          reject("Error al eliminar la imagen: \n"+error);
+        .catch(error => {  // Si ocurre un error al eliminar la imagen
+          reject("Error al eliminar la imagen: \n" + error);  // Rechazamos la promesa con un mensaje de error
         })
-      }
-      catch(error){
-        reject(error);
-      }
-    })
-  }
+    } catch (error) {  // Si ocurre cualquier otro error en el bloque `try`
+      reject(error);  // Rechazamos la promesa con el error generado
+    }
+  });
+}
+
 
   // OBTENER url de las imágenes
   obtenerUrlImagen(respuesta: UploadResult){

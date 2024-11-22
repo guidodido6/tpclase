@@ -1,12 +1,26 @@
-<body> 
-<marquee behavior="" direction=""><div><img src="../../../../../assets/desc.png" alt="" height="65px"></div></marquee>
-<div class="container">
-    <div class="row">
-        <div><img src="../../../../../assets/productos.png" alt="" height="65"></div>
-
-        <div class="col">
-            <app-carrusel></app-carrusel>
+<body>
+    <!-- Texto en movimiento con una imagen -->
+    <marquee behavior="" direction="">
+      <div>
+        <img src="../../../../../assets/desc.png" alt="" height="65px">
+      </div>
+    </marquee>
+    
+    <!-- Contenedor principal -->
+    <div class="container">
+      <!-- Fila principal -->
+      <div class="row">
+        <!-- Imagen de productos dentro de la fila -->
+        <div>
+          <img src="../../../../../assets/productos.png" alt="" height="65px">
         </div>
+        
+        <!-- Columna que contiene el componente del carrusel -->
+        <div class="col">
+          <!-- Componente carrusel personalizado de Angular -->
+          <app-carrusel></app-carrusel>
+        </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
+  

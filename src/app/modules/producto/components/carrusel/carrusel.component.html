@@ -1,26 +1,34 @@
+<!-- Contenedor principal del carrusel -->
 <div id="carouselExample" class="carousel slide">
+    <!-- Contenedor para los elementos del carrusel -->
     <div class="carousel-inner">
+        <!-- Primer elemento del carrusel, que se muestra inicialmente -->
         <div class="carousel-item active">
             <img src="../../../../../assets/Primer_item_carrusel.png" class="d-block w-100" alt="Primer item">
         </div>
+        <!-- Directiva *ngFor para iterar sobre productosCarrusel y crear un elemento de carrusel para cada producto -->
         <div class="carousel-item" *ngFor="let producto of productosCarrusel">
             <img src="{{producto.imagen}}" class="d-block w-100" alt="{{producto.alt}}">
         </div>
     </div>
 
+    <!-- Botón de control para mover al elemento anterior del carrusel -->
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
+    <!-- Botón de control para mover al siguiente elemento del carrusel -->
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
 </div>
 
+<!-- Contenedor para el componente de tarjeta -->
 <div class="col">
+    <!-- Componente app-card con eventos y propiedades -->
     <app-card 
-    (productoAgregado)="productoAnadido($event)" 
-    [productoReciente]="product">
+        (productoAgregado)="productoAnadido($event)" 
+        [productoReciente]="product">
     </app-card>
 </div>

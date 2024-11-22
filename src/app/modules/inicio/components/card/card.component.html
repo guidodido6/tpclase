@@ -1,26 +1,36 @@
-
+<!-- Contenedor principal -->
 <div class="container">
-    <div class="row">
-       <div><img src="../../../../../assets/inicio.png" alt="" height="70px"></div>
+  <div class="row">
+      <!-- Imagen de inicio -->
+      <div>
+          <img src="../../../../../assets/inicio.png" alt="" height="70px">
+      </div>
 
-        <div class="col">
-            <div *ngFor="let i of info" class="contenido">
-                <mat-card class="example-card">
-                    <mat-card-header>
+      <!-- Columna que contiene los elementos -->
+      <div class="col">
+          <!-- Directiva Angular *ngFor para iterar sobre la variable info -->
+          <div *ngFor="let i of info" class="contenido">
+              <!-- Tarjeta de Angular Material -->
+              <mat-card class="example-card">
+                  <!-- Encabezado de la tarjeta -->
+                  <mat-card-header>
+                      <!-- Título de la tarjeta -->
                       <mat-card-title>{{i.nombre}}</mat-card-title>
-                    </mat-card-header>
-                    <img mat-card-image src="{{i.imagen}}" alt="{{i.alt}}">
-                    <mat-card-content>
-                      <p>
-                        {{i.edad}}
-                      </p>
-                    </mat-card-content>
-                    <mat-card-actions>
+                  </mat-card-header>
+                  <!-- Imagen de la tarjeta -->
+                  <img mat-card-image src="{{i.imagen}}" alt="{{i.alt}}">
+                  <!-- Contenido de la tarjeta -->
+                  <mat-card-content>
+                      <p>{{i.edad}}</p>
+                  </mat-card-content>
+                  <!-- Acciones de la tarjeta -->
+                  <mat-card-actions>
                       <button mat-button>LIKE</button>
                       <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                  </mat-card>                
-            </div>
-        </div>
-    </div>
+                  </mat-card-actions>
+              </mat-card>
+          </div>
+      </div>
+  </div>
 </div>
+

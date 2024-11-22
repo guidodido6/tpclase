@@ -195,7 +195,7 @@
 </div>
 
 <!-- MODAL PARA ELIMINAR PRODUCTO -->
-<div class="modal fade" *ngIf="modalVisibleProducto" id="eliminarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eliminarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- ENCABEZADO -->
@@ -205,7 +205,7 @@
             </div>
 
             <!-- CUERPO DEL MODAL -->
-            <div class="modal-body">
+            <div class="modal-body" *ngIf="modalVisibleProducto" >
                 <!-- Mostramos al usuario información del producto que quiere eliminar -->
                  
                 {{productoSeleccionado.nombre}}
